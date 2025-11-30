@@ -4,12 +4,12 @@ import board.SudokuBoard;
 import result.ResultCollector;
 
 public class RowChecker extends Checker {
+
     private final int rowIndex;
 
     public RowChecker(int rowIndex, SudokuBoard board, ResultCollector results) {
         super(board, results);
         this.rowIndex = rowIndex;
-        setName("RowChecker-" + (rowIndex+1));
     }
 
     @Override

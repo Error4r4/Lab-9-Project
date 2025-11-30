@@ -3,7 +3,7 @@ package checker;
 import board.SudokuBoard;
 import result.ResultCollector;
 
-public abstract class Checker extends Thread {
+public abstract class Checker implements Runnable {
     protected final SudokuBoard board;
     protected final ResultCollector results;
 

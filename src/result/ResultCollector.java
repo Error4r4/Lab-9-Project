@@ -30,6 +30,13 @@ public class ResultCollector {
         return instance;
     }
 
+    public void reset() {
+        for (int i = 0; i < 9; i++) {
+            rowErrors[i].clear();
+            colErrors[i].clear();
+            boxErrors[i].clear();
+        }
+    }
 
     public void check(String type, int index, int[] values) {
         if (values == null || values.length != 9) return;

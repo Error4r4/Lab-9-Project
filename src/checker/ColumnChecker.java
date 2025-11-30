@@ -4,12 +4,12 @@ import board.SudokuBoard;
 import result.ResultCollector;
 
 public class ColumnChecker extends Checker {
+
     private final int colIndex;
 
-    public  ColumnChecker(int colIndex, SudokuBoard board, ResultCollector results) {
+    public ColumnChecker(int colIndex, SudokuBoard board, ResultCollector results) {
         super(board, results);
         this.colIndex = colIndex;
-        setName("ColChecker-" + (colIndex+1));
     }
 
     @Override

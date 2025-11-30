@@ -16,16 +16,12 @@ public class CheckerFactory {
         List<Thread> list = new ArrayList<>();
 
         if (mode == 0) {
-            Thread seq = new Thread(() -> {
-                // rows
-                for (int i = 0; i < 9; i++) results.check("ROW", i, board.getRow(i));
-                // cols
-                for (int i = 0; i < 9; i++) results.check("COL", i, board.getColumn(i));
-                // boxes
-                for (int i = 0; i < 9; i++) results.check("BOX", i, board.getBox(i));
-            }, "SequentialChecker");
-            list.add(seq);
-        } else if (mode == 3) {
+            for (int i = 0; i < 9; i++) results.check("ROW", i, board.getRow(i));
+            for (int i = 0; i < 9; i++) results.check("COL", i, board.getColumn(i));
+            for (int i = 0; i < 9; i++) results.check("BOX", i, board.getBox(i));
+            return List.of();
+        }
+        else if (mode == 3) {
             Thread rows = new Thread(() -> {
                 for (int i = 0; i < 9; i++) results.check("ROW", i, board.getRow(i));
             }, "RowsChecker");
@@ -39,9 +35,9 @@ public class CheckerFactory {
             list.add(cols);
             list.add(boxes);
         } else { // mode == 27
-            for (int i = 0; i < 9; i++) list.add(new RowChecker(i, board, results));
-            for (int i = 0; i < 9; i++) list.add(new ColumnChecker(i, board, results));
-            for (int i = 0; i < 9; i++) list.add(new BoxChecker(i, board, results));
+            for (int i = 0; i < 9; i++) list.add(new Thread(new RowChecker(i, board, results)));
+            for (int i = 0; i < 9; i++) list.add(new Thread(new ColumnChecker(i, board, results)));
+            for (int i = 0; i < 9; i++) list.add(new Thread(new BoxChecker(i, board, results)));
         }
 
         return list;
